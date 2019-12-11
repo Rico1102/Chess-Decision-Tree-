@@ -5,6 +5,7 @@ from Images.load_img import Images
 class King:
     def __init__(self, color):
         self.color = color
+        self.castling = True
         if color == 'B':
             self.img = Images.BK
             self.img = pygame.transform.scale(self.img, (70, 70))

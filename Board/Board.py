@@ -76,7 +76,6 @@ class Board:
                     pos = pygame.mouse.get_pos()
                     click_y = (pos[0] - 20) // 70
                     click_x = (pos[1] - 20) // 70
-                    print(click_x, click_y, click)
                     if click:
                         if self.check_move(click_x, click_y):
                             for i in self.moves:
