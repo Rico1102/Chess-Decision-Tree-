@@ -1,4 +1,5 @@
 import pygame
+from Pieces import piece
 
 
 class Move:
@@ -15,7 +16,9 @@ class Move:
         self.VIOLET = (153, 51, 153)
 
     def get_type(self):
-        if self.board[self.x_new][self.y_new].present == True and self.board[self.x_old][self.y_old].color != \
+        if self.board[self.x_old][self.y_old].name == 'Pawn' and (self.x_new == 0 or self.x_new == 7):
+            return 'Revival'
+        elif self.board[self.x_new][self.y_new].present == True and self.board[self.x_old][self.y_old].color != \
                 self.board[self.x_new][self.y_new].color:
             return 'Capture'
         elif self.board[self.x_new][self.y_new].present == True and self.board[self.x_old][self.y_old].color == \
@@ -39,7 +42,7 @@ class Move:
             x = self.y_new * 70 + 20
             y = self.x_new * 70 + 20
             create_rect(x, y, self.GREEN, canvas)
-        elif self.type == 'Castling':
+        elif self.type == 'Castling' or self.type == 'Revival':
             x = self.y_new * 70 + 20
             y = self.x_new * 70 + 20
             create_rect(x, y, self.VIOLET, canvas)
@@ -49,6 +52,7 @@ class Move:
             create_rect(x, y, self.RED, canvas)
 
     def make_move(self, board, pieces):
+        print(self.type)
         if board[self.x_old][self.y_old][1] == 'P':
             pieces[self.x_old][self.y_old].type.first_move = False
         if board[self.x_old][self.y_old][1] == 'R':
@@ -61,6 +65,9 @@ class Move:
             pieces[self.x_old][self.y_old], pieces[self.x_new][self.y_new] = pieces[self.x_new][self.y_new], \
                                                                              pieces[self.x_old][self.y_old]
         elif self.type == 'Castling':
+            if board[self.x_old][self.y_old][1] == 'K':
+                self.x_old, self.x_new = self.x_new, self.x_old
+                self.y_old, self.y_new = self.y_new, self.y_old
             x1 = self.x_old
             y1 = self.y_old
             x2 = self.x_new
@@ -92,8 +99,21 @@ class Move:
         elif self.type == 'Capture':
             board[self.x_new][self.y_new] = '-'
             pieces[self.x_new][self.y_new].present = False
+            board[self.x_old][self.y_old], board[self.x_new][self.y_new] = board[self.x_new][self.y_new], board[self.x_old][
+                self.y_old]
+            pieces[self.x_old][self.y_old], pieces[self.x_new][self.y_new] = pieces[self.x_new][self.y_new], \
+                                                                             pieces[self.x_old][self.y_old]
+        elif self.type == 'Revival':
+            board[self.x_new][self.y_new] = '-'
+            pieces[self.x_new][self.y_new].present = False
+            board[self.x_old][self.y_old], board[self.x_new][self.y_new] = board[self.x_new][self.y_new], board[self.x_old][
+                self.y_old]
+            pieces[self.x_old][self.y_old], pieces[self.x_new][self.y_new] = pieces[self.x_new][self.y_new], \
+                                                                             pieces[self.x_old][self.y_old]
+            board[self.x_new][self.y_new] = board[self.x_new][self.y_new][0] +'Q'
+            pieces[self.x_new][self.y_new] = piece.piece(True, board[self.x_new][self.y_new][0], 'Q')
         return board, pieces
 
 
 def create_rect(x, y, color, canvas):
-    pygame.draw.rect(canvas, color, [x, y, 70, 70])
+    pygame.draw.rect(canvas, color, [x+5, y+5, 60, 60])
