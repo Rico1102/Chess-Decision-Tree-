@@ -1,4 +1,6 @@
 from Pieces import Bishop, Pawn, Queen, King, Knight, Rook
+from Board import states
+import copy
 
 
 class piece:
@@ -9,9 +11,9 @@ class piece:
         self.board_x = 0
         self.board_y = 0
         self.name = 'None'
+        self.color = color
         if self.present == False:
             return
-        self.color = color
         if type == 'B':
             self.name = 'Bishop'
             self.type = Bishop.Bishop(self.color)
@@ -31,9 +33,13 @@ class piece:
             self.name = 'Queen'
             self.type = Queen.Queen(self.color)
 
-    def get_moves(self, board):
-        moves = self.type.find_move(board, self.board_x, self.board_y)
-        return moves
+    def get_moves(self, board, chess_board):
+        moves = self.type.find_move(board, self.board_x, self.board_y, chess_board)
+        fin_moves = []
+        for i in moves:
+            if i.king_safe(chess_board):
+                fin_moves.append(i)
+        return fin_moves
 
     def draw_piece(self, canvas):
         canvas.blit(self.type.img, (self.pos_x, self.pos_y))

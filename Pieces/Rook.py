@@ -16,7 +16,7 @@ class Rook:
             self.img = pygame.transform.scale(self.img , (70 , 70))
 
 
-    def find_move(self, board, x, y):
+    def find_move(self, board, x, y, c_board):
         moves = []
         moves.extend(self.horizontal_mov(board, x, y))
         moves.extend(self.vertical_mov(board, x, y))
@@ -111,38 +111,39 @@ class Rook:
                 i += 1
                 if y+i < 8:
                     # print(board[x][y+i].name)
-                    if board[x][y+i].present and board[x][y+i].name != 'King':
-                        break
-                    else:
-                        if board[x][y+i].name == 'King':
-                            if board[x][y+i].type.castling:
-                                # print(board[x][y+i].name, x, y+i, x, y+i-2)
-                                move = Move(x, y, x, y+i, board)
-                                # print(move.valid)
-                                if move.valid:
-                                    # print(board[x][y+i].name)
-                                    moves.append(move)
-                            else:
-                                break
+                    if board[x][y+i].present:
+                        if board[x][y+i].name != 'King':
                             break
+                        else:
+                            if board[x][y+i].name == 'King':
+                                if board[x][y+i].type.castling:
+                                    # print(board[x][y+i].name, x, y+i, x, y+i-2)
+                                    move = Move(x, y, x, y+i, board)
+                                    # print(move.valid)
+                                    if move.valid:
+                                        # print(board[x][y+i].name)
+                                        moves.append(move)
+                                else:
+                                    break
+                                break
                 else:
                     break
             i = 0
             while True:
                 i -= 1
                 if y+i < 8:
-                    if board[x][y+i].present and board[x][y+i].name != 'King':
-                        break
-                    else:
-                        if board[x][y+i].name == 'King':
-                            if board[x][y+i].type.castling:
-                                print(board[x][y+i].name)
-                                move = Move(x, y, x, y+i, board)
-                                if move.valid:
-                                    moves.append(move)                                
-                            else:
-                                break
+                    if board[x][y+i].present:
+                        if board[x][y+i].name != 'King':
                             break
+                        else:
+                            if board[x][y+i].name == 'King':
+                                if board[x][y+i].type.castling:
+                                    move = Move(x, y, x, y+i, board)
+                                    if move.valid:
+                                        moves.append(move)                                
+                                else:
+                                    break
+                                break
                 else:
                     break
         return moves

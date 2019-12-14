@@ -14,7 +14,7 @@ class Pawn:
             self.img = Images.WP
             self.img = pygame.transform.scale(self.img, (70, 70))
 
-    def find_move(self, board, x, y):
+    def find_move(self, board, x, y, c_board):
         moves = []
         moves.extend(self.straight_move(board, x, y))
         moves.extend(self.diagonal_move(board, x, y))

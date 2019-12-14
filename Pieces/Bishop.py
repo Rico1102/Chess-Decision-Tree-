@@ -13,7 +13,7 @@ class Bishop:
             self.img = Images.WB
             self.img = pygame.transform.scale(self.img, (70, 70))
 
-    def find_move(self, board, x, y):
+    def find_move(self, board, x, y, c_board):
         moves = []
         moves.extend(self.pri_diagonal(board, x, y))
         moves.extend(self.sec_diagonal(board, x, y))

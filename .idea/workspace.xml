@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3711dc7-1a39-457f-a4e3-94fc422524d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Board/states.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board/Board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/Move.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board/Move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mode/SinglePlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mode/SinglePlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/Bishop.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/Bishop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pieces/King.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/King.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/Knight.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/Knight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/Pawn.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/Pawn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pieces/Queen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/Queen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/Rook.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/Rook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pieces/piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces/piece.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +49,7 @@
       <recent name="C:\Users\R1c0\PycharmProjects\Chess\Pieces" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.MultiPlayer">
+  <component name="RunManager" selected="Python.SinglePlayer">
     <configuration name="Board" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Chess" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,8 +134,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="SinglePlayer" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Chess" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mode/SinglePlayer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.SinglePlayer" />
         <item itemvalue="Python.MultiPlayer" />
         <item itemvalue="Python.Board" />
         <item itemvalue="Python.Move" />
@@ -161,34 +191,34 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="70" key="#Vim_Emulation" timestamp="1575915071400">
+    <state x="361" y="70" key="#Vim_Emulation" timestamp="1576221428879">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="70" key="#Vim_Emulation/0.0.1536.824@0.0.1536.824" timestamp="1575915071400" />
+    <state x="361" y="70" key="#Vim_Emulation/0.0.1536.824@0.0.1536.824" timestamp="1576221428879" />
     <state x="65" y="143" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1576087896080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="65" y="143" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1576087896080" />
-    <state x="47" y="6" key="CommitChangelistDialog2" timestamp="1576083093363">
+    <state x="47" y="6" key="CommitChangelistDialog2" timestamp="1576177681313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="47" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1576083093363" />
-    <state width="745" height="207" key="GridCell.Tab.0.bottom" timestamp="1576134490211">
+    <state x="47" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1576177681313" />
+    <state width="745" height="207" key="GridCell.Tab.0.bottom" timestamp="1576328417624">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576134490211" />
-    <state width="745" height="207" key="GridCell.Tab.0.center" timestamp="1576134490210">
+    <state width="745" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576328417624" />
+    <state width="745" height="207" key="GridCell.Tab.0.center" timestamp="1576328417624">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="207" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576134490210" />
-    <state width="745" height="207" key="GridCell.Tab.0.left" timestamp="1576134490210">
+    <state width="745" height="207" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576328417624" />
+    <state width="745" height="207" key="GridCell.Tab.0.left" timestamp="1576328417624">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="207" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576134490210" />
-    <state width="745" height="207" key="GridCell.Tab.0.right" timestamp="1576134490210">
+    <state width="745" height="207" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576328417624" />
+    <state width="745" height="207" key="GridCell.Tab.0.right" timestamp="1576328417624">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="745" height="207" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576134490210" />
+    <state width="745" height="207" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576328417624" />
     <state width="745" height="261" key="GridCell.Tab.1.bottom" timestamp="1576004130193">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

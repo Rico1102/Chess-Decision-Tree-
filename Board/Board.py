@@ -1,5 +1,6 @@
 from Pieces.piece import piece
 import pygame
+from Board import states
 
 
 class Board:
@@ -28,7 +29,6 @@ class Board:
                     self.pieces[cnt].append(piece(True, j[0], j[1]))
             cnt += 1
         self.update_board()
-        self.play_game()
 
     def create_rect(self, x, y, color):  # Creates squares
         pygame.draw.rect(self.canvas, color, [x, y, 70, 70])
@@ -60,17 +60,14 @@ class Board:
                 if j.present:
                     j.draw_piece(self.canvas)
 
-    def play_game(self):
+    def play_game(self, color):
         run = True
-        click_x = 0
-        click_y = 0
-        board_x = 0
-        board_y = 0
         click = False
         while run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
+                    return False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.update_board()
                     pos = pygame.mouse.get_pos()
@@ -84,25 +81,27 @@ class Board:
                                     self.update_board()
                                     click = False
                                     self.moves.clear()
-                                    break
+                                    return True
                             continue
                         else:
                             click = False
                             self.moves.clear()
-                    if click == False and self.check_pos(click_x, click_y):
+                    if click == False and self.check_pos(click_x, click_y, color):
                         click = True
                         # print(click_x, click_y, click)
-                        self.moves = self.pieces[click_x][click_y].get_moves(self.pieces)
+                        self.moves = self.pieces[click_x][click_y].get_moves(self.pieces, self.board)
                         # print(self.pieces[click_x][click_y].type.first_move)
                         for i in self.moves:
                             # print(i.x_old, i.y_old, i.x_new, i.y_new)
                             i.show_move(self.canvas)
                             # print(i.x_new, i.y_new)
-                            if self.check_pos(i.x_new, i.y_new):
+                            if self.pieces[i.x_new][i.y_new].present:
                                 self.pieces[i.x_new][i.y_new].draw_piece(self.canvas)
                             pygame.display.update()
 
-    def check_pos(self, x, y):
+    def check_pos(self, x, y, color):
+        if color != self.pieces[x][y].color:
+            return False
         return self.pieces[x][y].present
 
     def check_move(self, x, y):
