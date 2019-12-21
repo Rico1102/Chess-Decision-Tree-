@@ -10,7 +10,7 @@ class States:
     def update_pos(self):
         for i in range(8):
             for j in range(8):
-                if self.pieces[i][j].name == 'King':
+                if self.pieces[i][j].name == 'King' and self.pieces[i][j].present:
                     if self.pieces[i][j].color == 'B':
                         self.black_king_x = i
                         self.black_king_y = j

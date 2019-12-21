@@ -1,16 +1,16 @@
-from Pieces.piece import piece
 import pygame
-from Board import states
+from Pieces.piece import piece
 
 
 class Board:
     def __init__(self):
+        print('Hello')
         pygame.init()
         self.BROWN = (102, 51, 0)
         self.WHITE = (255, 255, 255)
         self.BLACK = (0, 0, 0)
         self.canvas = pygame.display.set_mode((600, 600))
-        self.board = [['WR', 'WN', 'WB', 'WK', 'WQ', 'WB', 'WN', 'WR'],
+        self.board = [['WR', 'WN', 'WB', 'WQ', 'WK', 'WB', 'WN', 'WR'],
                       ['WP', 'WP', 'WP', 'WP', 'WP', 'WP', 'WP', 'WP'],
                       ['-', '-', '-', '-', '-', '-', '-', '-'],
                       ['-', '-', '-', '-', '-', '-', '-', '-'],
@@ -20,6 +20,7 @@ class Board:
                       ['BR', 'BN', 'BB', 'BQ', 'BK', 'BB', 'BN', 'BR']]
         self.pieces = [[], [], [], [], [], [], [], []]
         self.moves = []
+        self.is_AI_thinking = False
         cnt = 0
         for i in self.board:
             for j in i:
@@ -30,8 +31,8 @@ class Board:
             cnt += 1
         self.update_board()
 
-    def create_rect(self, x, y, color):  # Creates squares
-        pygame.draw.rect(self.canvas, color, [x, y, 70, 70])
+    def create_rect(self, x, y, color, s_x=70, s_y=70):  # Creates squares
+        pygame.draw.rect(self.canvas, color, [x, y, s_x, s_y])
 
     def draw_board(self):
         for i in range(0, 8):
@@ -54,20 +55,26 @@ class Board:
         self.place_pieces()
         pygame.display.update()
 
+    def update_display(self):
+        pygame.display.update()
+
     def place_pieces(self):
         for i in self.pieces:
             for j in i:
                 if j.present:
                     j.draw_piece(self.canvas)
 
-    def play_game(self, color):
+    def play_game(self, color, mode='Offline'):
         run = True
         click = False
         while run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
-                    return False
+                    if mode == 'Online':
+                        return False, 'None'
+                    else:
+                        return False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.update_board()
                     pos = pygame.mouse.get_pos()
@@ -81,7 +88,10 @@ class Board:
                                     self.update_board()
                                     click = False
                                     self.moves.clear()
-                                    return True
+                                    if mode == 'Online':
+                                        return True, i
+                                    else:
+                                        return True
                             continue
                         else:
                             click = False
@@ -109,3 +119,5 @@ class Board:
             if i.x_new == x and i.y_new == y:
                 return True
         return False
+
+
