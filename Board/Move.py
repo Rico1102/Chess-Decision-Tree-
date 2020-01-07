@@ -90,7 +90,6 @@ class Move:
             create_rect(x, y, self.RED, canvas)
 
     def make_move(self, board, pieces):
-        # print(self.x_old,self.y_old)
         if pieces[self.x_old][self.y_old].present and pieces[self.x_old][self.y_old].name == 'Pawn':
             pieces[self.x_old][self.y_old].type.first_move = False
         if pieces[self.x_old][self.y_old].present and pieces[self.x_old][self.y_old].name == 'Rook':
@@ -167,7 +166,6 @@ class Move:
             pieces[self.x_new][self.y_new] = piece.piece(True, board[self.x_new][self.y_new][0], 'Q')
             pieces[self.x_old][self.y_old].board_x, pieces[self.x_old][self.y_old].board_y = self.x_old, self.y_old
             pieces[self.x_new][self.y_new].board_x, pieces[self.x_new][self.y_new].board_y = self.x_new, self.y_new
-        # print('Updated Values', pieces[self.x_new][self.y_new].board_x, pieces[self.x_new][self.y_new].board_y)
         return board, pieces
 
     def undo_move(self, board, pieces, p1, p2):

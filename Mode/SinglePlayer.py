@@ -61,7 +61,6 @@ class Game:
         self.play_game()
 
     def get_piece_val(self, x, y, color):
-        # print(x, y)
         i = x * 8 + y
         if color == 'W':
             i = (7 - x)*8 + y
@@ -76,7 +75,6 @@ class Game:
                 print(self.cnt)
                 for j in self.board.board:
                     print(j, ',')
-        # print(i)
         return score
 
     def evaluate(self, color):
@@ -103,8 +101,6 @@ class Game:
                     else:
                         mob += self.get_piece_val(i, j, self.board.pieces[i][j].color)
                         mat_wt += piece_wt[self.board.pieces[i][j].name]
-                    # print(self.board.pieces[i][j].name[0], self.board.pieces[i][j].color, mob)
-        # print(mat_wt, mob)
         return mat_wt + mob
 
     def copy(self, val):
@@ -114,10 +110,6 @@ class Game:
         return fin_copy
 
     def min_max(self, color, opponent, alpha, beta, depth, maximizing_player, flag=False):
-        # if flag and depth % 2 == 1:
-        #     print("Intermediate Move", depth)
-        #     for i in self.board.board:
-        #         print(i)
         if depth == 3:
             return -self.evaluate(opponent)
         if maximizing_player:
@@ -127,13 +119,6 @@ class Game:
         moves = self.check_all_moves(color)
         for i in moves:
             p1, p2 = i.copy_piece()
-            if i.type == 'Castling':
-                print('Depth : ', depth)
-                print('Moves : ', i.x_old, i.y_old, i.x_new, i.y_new)
-                for j in self.que:
-                    print("Step X", len(self.que), color)
-                    for k in j:
-                        print(k)
             self.que.append(self.copy(self.board.board))
             self.board.board, self.board.pieces = i.make_move(self.board.board, self.board.pieces)
             result = self.min_max(opponent, color, alpha, beta, depth + 1, not maximizing_player, flag)
@@ -158,8 +143,6 @@ class Game:
         self.que.append(self.copy(self.board.board))
         for i in moves:
             p1, p2 = i.copy_piece()
-            if i.type == 'Castling':
-                print('Found', 0)
             self.board.board, self.board.pieces = i.make_move(self.board.board, self.board.pieces)
             self.que.append(self.copy(self.board.board))
             if i.x_old == 0 and i.y_old == 4 and i.y_new == 5:
@@ -173,15 +156,7 @@ class Game:
                 best_move = i
         self.is_AI_thinking = False
         self.que.pop()
-        print(len(self.que))
-        print('AI Move : ', best_move.type, best_move.x_old, best_move.y_old, best_move.x_new, best_move.y_new)
-        # print("Before Move")
-        # for i in self.board.board:
-        #     print(i)
         self.board.board, self.board.pieces = best_move.make_move(self.board.board, self.board.pieces)
-        # print("After Move")
-        # for i in self.board.board:
-        #     print(i)
         self.board.update_board()
 
     def check_all_moves(self, color):
@@ -217,8 +192,6 @@ class Game:
             if i % 2 == 0:
                 color, opponent = 'B', 'W'
                 status = self.board.play_game(color)
-                for j in self.board.board:
-                    print(j)
             else:
                 color, opponent = 'W', 'B'
                 status = True
@@ -234,7 +207,3 @@ class Game:
                 print('Color ', color, ' won')
                 break
             i += 1
-            # for j in self.board.pieces:
-            #     for k in j:
-            # print(k.name, end=" ")
-            # print()

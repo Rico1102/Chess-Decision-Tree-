@@ -32,7 +32,6 @@ class piece:
             self.type = Queen.Queen(self.color)
 
     def get_moves(self, board, chess_board):
-        # print('Coordinates', self.board_x, self.board_y)
         moves = self.type.find_move(board, self.board_x, self.board_y, chess_board)
         fin_moves = []
         for i in moves:

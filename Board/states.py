@@ -178,3 +178,26 @@ class States:
             else:
                 break
         return False
+
+    def knight_attack(self):
+        if color == 'W':
+            x, y = self.white_king_x, self.white_king_y
+        else:
+            x, y = self.black_king_x, self.black_king_y
+        if x-1 > -1 and y-2 > -1 and self.pieces[x-1][y-2].present and self.pieces[x-1][y-2].color != self.color and self.pieces[x-1][y-2].name == 'Knight':
+            return True
+        if x+1 < 8 and y-2 > -1 and self.pieces[x+1][y-2].present and self.pieces[x+1][y-2].color != self.color and self.pieces[x+1][y-2].name == 'Knight':
+            return True
+        if x+2 < 8 and y-1 > -1 and self.pieces[x+2][y-1].present and self.pieces[x+2][y-1].color != self.color and self.pieces[x+2][y-1].name == 'Knight':
+            return True
+        if x+2 < 8 and y+1 < 8 and self.pieces[x+2][y+1].present and self.pieces[x+2][y+1].color != self.color and self.pieces[x+2][y+1].name == 'Knight':
+           return True
+        if x-1 > -1 and y+2 < 8 and self.pieces[x-1][y+2].present and self.pieces[x-1][y+2].color != self.color and self.pieces[x-1][y+2].name == 'Knight':
+            return True
+        if x+1 < 8 and y+2 < 8 and self.pieces[x+1][y+2].present and self.pieces[x+1][y+2].color != self.color and self.pieces[x+1][y+2].name == 'Knight':
+           return True
+        if x-2 > -1 and y-1 > -1 and self.pieces[x-2][y-1].present and self.pieces[x-2][y-1].color != self.color and self.pieces[x-2][y-1].name == 'Knight':
+            return True
+        if x-2 > -1 and y+1 < 8 and self.pieces[x-2][y+1].present and self.pieces[x-2][y+1].color != self.color and self.pieces[x-2][y+1].name == 'Knight':
+            return True
+        return False

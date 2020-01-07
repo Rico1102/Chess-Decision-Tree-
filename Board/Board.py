@@ -4,7 +4,6 @@ from Pieces.piece import piece
 
 class Board:
     def __init__(self):
-        print('Hello')
         pygame.init()
         self.BROWN = (102, 51, 0)
         self.WHITE = (255, 255, 255)
@@ -98,13 +97,9 @@ class Board:
                             self.moves.clear()
                     if click == False and self.check_pos(click_x, click_y, color):
                         click = True
-                        # print(click_x, click_y, click)
                         self.moves = self.pieces[click_x][click_y].get_moves(self.pieces, self.board)
-                        # print(self.pieces[click_x][click_y].type.first_move)
                         for i in self.moves:
-                            # print(i.x_old, i.y_old, i.x_new, i.y_new)
                             i.show_move(self.canvas)
-                            # print(i.x_new, i.y_new)
                             if self.pieces[i.x_new][i.y_new].present:
                                 self.pieces[i.x_new][i.y_new].draw_piece(self.canvas)
                             pygame.display.update()

@@ -110,18 +110,14 @@ class Rook:
             while True:
                 i += 1
                 if y+i < 8:
-                    # print(board[x][y+i].name)
                     if board[x][y+i].present:
                         if board[x][y+i].name != 'King':
                             break
                         else:
                             if board[x][y+i].name == 'King':
                                 if board[x][y+i].type.castling:
-                                    # print(board[x][y+i].name, x, y+i, x, y+i-2)
                                     move = Move(x, y, x, y+i, board)
-                                    # print(move.valid)
                                     if move.valid:
-                                        # print(board[x][y+i].name)
                                         moves.append(move)
                                 else:
                                     break
