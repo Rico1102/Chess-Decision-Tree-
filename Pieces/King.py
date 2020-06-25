@@ -1,5 +1,5 @@
 import pygame
-from Images.load_img import Images
+import Images
 from Board.Move import Move
 
 
@@ -8,10 +8,10 @@ class King:
         self.color = color
         self.castling = True
         if color == 'B':
-            self.img = Images.BK
+            self.img = Images.load_img.Images.BK
             self.img = pygame.transform.scale(self.img, (70, 70))
         else:
-            self.img = Images.WK
+            self.img = Images.load_img.Images.WK
             self.img = pygame.transform.scale(self.img, (70, 70))
 
     def find_move(self, board, x, y, c_board):

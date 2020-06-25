@@ -1,5 +1,5 @@
 import pygame
-from Images.load_img import Images
+import Images
 from Board.Move import Move
 
 
@@ -7,10 +7,10 @@ class Knight:
     def __init__(self, color):
         self.color = color
         if color == 'B':
-            self.img = Images.BN
+            self.img = Images.load_img.Images.BN
             self.img = pygame.transform.scale(self.img, (70, 70))
         else:
-            self.img = Images.WN
+            self.img = Images.load_img.Images.WN
             self.img = pygame.transform.scale(self.img, (70, 70))
 
     def find_move(self, board, x, y, c_board):

@@ -1,7 +1,6 @@
 from Board import Board
 from Board import states
 import threading
-import copy
 
 
 class Game:

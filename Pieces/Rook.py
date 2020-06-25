@@ -1,7 +1,6 @@
 import pygame
 from Images.load_img import Images
 from Board.Move import Move
-from Pieces import King
 
 
 class Rook:

@@ -1,20 +1,22 @@
 from Mode import MultiPlayer, SinglePlayer, Online
-import pygame
 
 
 class Menu:
-    def __init__(self):
-        pygame.init()
-        self.board = pygame.display.set_mode((600, 600))
-        self.place_buttons()
-        self.run()
-
-    def place_buttons(self):
-        fontobj = pygame.font.Font('freesansbold.ttf', 20)
-        textSurfaceObj = fontobj.render('THANKS FOR USING INDIAN RAILWAYS DATABASE!!!', True, Red)
-
     def run(self):
-        pass
+        print("Welcome to Chess\nMade by - r1c0\nVersion - 0.1")
+        # while(True):
+        print('1. Sinplayer\n2. Multiplayer\n3. Online\n4. Exit')
+        choice = input("Enter your choice - ")
+        if choice == '1':
+            SinglePlayer.Game()
+        elif choice == '2':
+            MultiPlayer.Game()
+        elif choice == '3':
+            Online.Game()
+        else:
+            exit()
 
 
-game = SinglePlayer.Game()
+newGame = Menu()
+newGame.run()
+# SinglePlayer.Game()

@@ -77,6 +77,10 @@ class Board:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.update_board()
                     pos = pygame.mouse.get_pos()
+                    if pos[0] > 560 or pos[0] < 20:
+                        continue
+                    elif pos[1] > 560 or pos[1] < 20:
+                        continue
                     click_y = (pos[0] - 20) // 70
                     click_x = (pos[1] - 20) // 70
                     if click:
@@ -95,7 +99,7 @@ class Board:
                         else:
                             click = False
                             self.moves.clear()
-                    if click == False and self.check_pos(click_x, click_y, color):
+                    if not click and self.check_pos(click_x, click_y, color):
                         click = True
                         self.moves = self.pieces[click_x][click_y].get_moves(self.pieces, self.board)
                         for i in self.moves:
@@ -103,6 +107,14 @@ class Board:
                             if self.pieces[i.x_new][i.y_new].present:
                                 self.pieces[i.x_new][i.y_new].draw_piece(self.canvas)
                             pygame.display.update()
+
+    def keep_screen_alive(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            else:
+                return True
+        return True
 
     def check_pos(self, x, y, color):
         if color != self.pieces[x][y].color:
@@ -115,4 +127,5 @@ class Board:
                 return True
         return False
 
-
+    def destroy_board(self):
+        pygame.quit()

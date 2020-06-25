@@ -1,2 +1,8 @@
+__pycache__/
+*.pyc
 /venv
 /.vscode
+/.idea
+buglist.md
+Server.py
+./Client/NewClient.py

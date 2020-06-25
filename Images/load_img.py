@@ -18,3 +18,4 @@ class Images:
     WQ = pygame.image.load(os.path.join(current_path, "WQ.png")).convert_alpha()
     WR = pygame.image.load(os.path.join(current_path, "WR.png")).convert_alpha()
     WN = pygame.image.load(os.path.join(current_path, "WN.png")).convert_alpha()
+    pygame.quit()

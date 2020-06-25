@@ -1,4 +1,5 @@
 import socket
+import json
 
 
 class Client:
@@ -9,18 +10,24 @@ class Client:
         self.sock.connect((ip, port))
 
     def assign(self):
-        num = int(self.sock.recv(1024).decode())
-        print('Client got the following number ', num)
-        return num
+        msg = self.sock.recv(1024).decode()
+        uid = json.loads(msg)
+        uid = uid['id']
+        print('Client got the following UID ', uid)
+        return uid
 
     def send(self, msg):
         b_msg = bytes(msg, 'UTF-8')
         self.sock.send(b_msg)
 
-    def receive(self):
+    def find_opponent(self):
+        r = json.loads(self.sock.recv(1024).decode())
+        if r['status']:
+            print("Opponent Found")
+
+    def receive(self, que):
         r = self.sock.recv(1024)
-        data = r.decode()
-        return data
+        que.put(r.decode())
 
     def close(self):
         self.sock.close()

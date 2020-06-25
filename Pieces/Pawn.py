@@ -1,5 +1,5 @@
 import pygame
-from Images.load_img import Images
+import Images
 from Board.Move import Move
 
 
@@ -8,10 +8,10 @@ class Pawn:
         self.color = color
         self.first_move = True
         if color == 'B':
-            self.img = Images.BP
+            self.img = Images.load_img.Images.BP
             self.img = pygame.transform.scale(self.img, (70, 70))
         else:
-            self.img = Images.WP
+            self.img = Images.load_img.Images.WP
             self.img = pygame.transform.scale(self.img, (70, 70))
 
     def find_move(self, board, x, y, c_board):

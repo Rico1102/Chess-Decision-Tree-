@@ -1,5 +1,4 @@
-from Pieces import Bishop, Pawn, Queen, King, Knight, Rook
-
+from Pieces import Bishop, Rook, Knight, King, Queen, Pawn
 
 class piece:
     def __init__(self, present, color='None', type='None'):

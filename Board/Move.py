@@ -19,6 +19,9 @@ class Move:
         self.GREEN = (77, 255, 77)
         self.VIOLET = (153, 51, 153)
 
+    def create_rect(self , x, y, color, canvas):
+        pygame.draw.rect(canvas, color, [x + 5, y + 5, 60, 60])
+
     def copy(self, p):
         if p.name == 'Knight':
             N = 'N'
@@ -79,15 +82,15 @@ class Move:
         if self.type == 'Normal':
             x = self.y_new * 70 + 20
             y = self.x_new * 70 + 20
-            create_rect(x, y, self.GREEN, canvas)
+            self.create_rect(x, y, self.GREEN, canvas)
         elif self.type == 'Castling' or self.type == 'Revival':
             x = self.y_new * 70 + 20
             y = self.x_new * 70 + 20
-            create_rect(x, y, self.VIOLET, canvas)
+            self.create_rect(x, y, self.VIOLET, canvas)
         else:
             x = self.y_new * 70 + 20
             y = self.x_new * 70 + 20
-            create_rect(x, y, self.RED, canvas)
+            self.create_rect(x, y, self.RED, canvas)
 
     def make_move(self, board, pieces):
         if pieces[self.x_old][self.y_old].present and pieces[self.x_old][self.y_old].name == 'Pawn':
@@ -140,7 +143,7 @@ class Move:
                                                                            board[self.x_old][
                                                                                self.y_old]
             pieces[self.x_old][self.y_old], pieces[self.x_new][self.y_new] = pieces[self.x_new][self.y_new], \
-                                                                             pieces[self.x_old][self.y_old]            
+                                                                             pieces[self.x_old][self.y_old]
             self.x_old, self.y_old, self.x_new, self.y_new = t_ox, t_oy, t_nx, t_ny
             pieces[self.x_old][self.y_old].board_x, pieces[self.x_old][self.y_old].board_y = x2, y2 + a
             pieces[self.x_new][self.y_new].board_x, pieces[self.x_new][self.y_new].board_y = x2, y2 + b
@@ -204,6 +207,3 @@ class Move:
                 board[self.x_new][self.y_new] = '_'
         return board, pieces
 
-
-def create_rect(x, y, color, canvas):
-    pygame.draw.rect(canvas, color, [x + 5, y + 5, 60, 60])
